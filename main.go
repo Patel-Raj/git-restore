@@ -24,8 +24,6 @@ func main() {
 		os.Exit(1)
 	}
 
-	fmt.Println("Creating entire repoistory at", distiantionDir, "from commit hash:", gitObject)
-
 	err := logic.CreateRepoCopy(sourceRepo, distiantionDir, gitObject)
 	if err != nil {
 		fmt.Println(err)
