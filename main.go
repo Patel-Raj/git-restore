@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/Patel-Raj/git-restore/internal/logic"
 	"github.com/Patel-Raj/git-restore/internal/validate"
 )
 
@@ -16,10 +17,20 @@ func main() {
 	}
 
 	sourceRepo, distiantionDir, gitObject := os.Args[1], os.Args[2], os.Args[3]
+
 	allErrors := validate.ValidateInputs(sourceRepo, distiantionDir, gitObject)
 	if allErrors != nil {
 		fmt.Println(allErrors)
-
 		os.Exit(1)
 	}
+
+	fmt.Println("Creating entire repoistory at", distiantionDir, "from commit hash:", gitObject)
+
+	err := logic.CreateRepoCopy(sourceRepo, distiantionDir, gitObject)
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	fmt.Println("Repository created successfully at", distiantionDir)
 }
