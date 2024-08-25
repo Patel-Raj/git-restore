@@ -1,4 +1,4 @@
-CLI tool to recreate and entire Git repository from a deleted commit hash, branch or tag.
+CLI tool to recreate an entire Git repository from a deleted commit hash, branch, or tag after a `git reset --hard HEAD~N` command.
 
 To use the `git-restore` binary, do:
 
